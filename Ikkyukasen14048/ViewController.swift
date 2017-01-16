@@ -106,6 +106,7 @@ final class ViewController: UIViewController {
 						return
 					}
 					let result = try JSONSerialization.jsonObject(with: responseData, options: .allowFragments)
+					self.tweets = []
 					for tweet in result as! [AnyObject] { // errorsが返ってくることがある
 						guard let text = tweet["text"] as? String, let createdAt = tweet["created_at"] as? String else { // これmodel側でやるべきな感じ
 							print("failed to map tweet string from JSON")
