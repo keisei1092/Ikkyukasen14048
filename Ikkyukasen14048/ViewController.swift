@@ -47,7 +47,6 @@ final class ViewController: UIViewController {
 	}
 
 	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-		// startIndex = tableView.visibleCells.startIndex
 		guard let visibleRows = tableView.indexPathsForVisibleRows else {
 			return
 		}
