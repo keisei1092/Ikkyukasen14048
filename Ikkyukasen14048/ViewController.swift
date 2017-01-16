@@ -38,7 +38,7 @@ final class ViewController: UIViewController {
 		// Do any additional setup after loading the view, typically from a nib.
 		tableView.register(UINib(nibName: "TweetTableViewCell", bundle: nil), forCellReuseIdentifier: "TweetTableViewCell")
 		getAccounts { (accounts: [ACAccount]) -> Void in
-			self.showAccountSelectSheet(accounts: accounts)
+			// do anything
 		}
 	}
 
@@ -48,6 +48,9 @@ final class ViewController: UIViewController {
 	}
 
 	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+		guard tweets.count != 0 else {
+			return
+		}
 		guard let visibleRows = tableView.indexPathsForVisibleRows else {
 			return
 		}
@@ -72,27 +75,9 @@ final class ViewController: UIViewController {
 				return
 			}
 			print("アカウント取得完了")
-			callback(accounts)
+			self.twitterAccount = accounts[0]
+			self.getTimeline()
 		}
-	}
-
-	private func showAccountSelectSheet(accounts: [ACAccount]) {
-		let alert = UIAlertController(title: "Twitter", message: "Choose an account", preferredStyle: .actionSheet)
-
-		for account in accounts {
-			alert.addAction(UIAlertAction(title: account.username, style: .default, handler: { [weak self] (action) -> Void in
-				if let unwrapSelf = self {
-					unwrapSelf.twitterAccount = account
-					unwrapSelf.getTimeline()
-				}
-			}))
-		}
-
-		alert.popoverPresentationController?.sourceView = self.view
-		alert.popoverPresentationController?.sourceRect = CGRect(x: self.view.bounds.size.width / 2, y: self.view.bounds.size.height / 2, width: 1.0, height: 1.0)
-		alert.popoverPresentationController?.permittedArrowDirections = .down
-		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-		present(alert, animated: true, completion: nil)
 	}
 
 	private func getTimeline() {
