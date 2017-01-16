@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -29,11 +31,56 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="8Qk-cR-oj5"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kzZ-94-Peo">
+                                <rect key="frame" x="309" y="559" width="50" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3v-fE-1Oh" customClass="BorderedUIButton" customModule="Ikkyukasen14048" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                        <color key="backgroundColor" red="0.16078431372549018" green="0.63921568627450975" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="▲">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="upButtonTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0ZX-Lu-wzX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLJ-hy-dSR" customClass="BorderedUIButton" customModule="Ikkyukasen14048" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="60" width="30" height="30"/>
+                                        <color key="backgroundColor" red="0.16078431369999999" green="0.63921568630000003" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="▼">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="downButtonTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cGK-ek-6om"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="zLJ-hy-dSR" firstAttribute="centerX" secondItem="kzZ-94-Peo" secondAttribute="centerX" id="3eG-fE-jd5"/>
+                                    <constraint firstItem="E3v-fE-1Oh" firstAttribute="centerX" secondItem="kzZ-94-Peo" secondAttribute="centerX" id="598-ib-YfL"/>
+                                    <constraint firstAttribute="height" constant="100" id="92c-N9-Orv"/>
+                                    <constraint firstItem="E3v-fE-1Oh" firstAttribute="centerY" secondItem="kzZ-94-Peo" secondAttribute="centerY" multiplier="0.5" id="PvP-B4-N2J"/>
+                                    <constraint firstItem="zLJ-hy-dSR" firstAttribute="centerY" secondItem="kzZ-94-Peo" secondAttribute="centerY" multiplier="1.5" id="cVU-wi-jvY"/>
+                                    <constraint firstAttribute="width" constant="50" id="oot-jM-MwS"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="IRQ-uT-kMq" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="6dq-Ix-e1d"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kzZ-94-Peo" secondAttribute="trailing" id="JWH-mW-0Q6"/>
                             <constraint firstItem="IRQ-uT-kMq" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="MOB-Xa-CyW"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kzZ-94-Peo" secondAttribute="bottom" constant="8" id="YMx-hb-ME7"/>
                             <constraint firstItem="IRQ-uT-kMq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wDB-Gv-0US"/>
                             <constraint firstItem="IRQ-uT-kMq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="yhB-qj-VV6"/>
                         </constraints>

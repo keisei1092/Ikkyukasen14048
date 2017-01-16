@@ -14,6 +14,14 @@ final class ViewController: UIViewController {
 
 	@IBOutlet weak var tableView: UITableView!
 
+	@IBAction func upButtonTouchUpInside(_ sender: UIButton) {
+		handleUp()
+	}
+
+	@IBAction func downButtonTouchUpInside(_ sender: UIButton) {
+		handleDown()
+	}
+
 	var accountStore: ACAccountStore = ACAccountStore()
 	var twitterAccount: ACAccount?
 	var tweets: [Tweet] = []
@@ -108,6 +116,14 @@ final class ViewController: UIViewController {
 				}
 			}
 		}
+	}
+
+	private func handleUp() {
+
+	}
+
+	private func handleDown() {
+		
 	}
 
 }
