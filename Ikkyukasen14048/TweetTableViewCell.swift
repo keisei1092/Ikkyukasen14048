@@ -10,7 +10,7 @@ import UIKit
 
 final class TweetTableViewCell: UITableViewCell {
 
-	@IBOutlet weak var textLabel: UILabel!
+	@IBOutlet weak var tweetLabel: UILabel!
 	@IBOutlet weak var userLabel: UILabel!
 
     override func awakeFromNib() {

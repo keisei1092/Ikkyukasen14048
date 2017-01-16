@@ -46,7 +46,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="textLabel" destination="ZaZ-44-vwt" id="dT3-gL-mDJ"/>
+                <outlet property="tweetLabel" destination="ZaZ-44-vwt" id="G4y-fn-xCF"/>
                 <outlet property="userLabel" destination="Sb1-kt-MOc" id="UOm-As-PQ0"/>
             </connections>
         </tableViewCell>

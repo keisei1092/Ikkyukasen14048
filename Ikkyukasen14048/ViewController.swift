@@ -36,6 +36,7 @@ final class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		tableView.register(UINib(nibName: "TweetTableViewCell", bundle: nil), forCellReuseIdentifier: "TweetTableViewCell")
 		getAccounts { (accounts: [ACAccount]) -> Void in
 			self.showAccountSelectSheet(accounts: accounts)
 		}
@@ -156,6 +157,10 @@ final class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate {
 
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 88
+	}
+
 }
 
 extension ViewController: UITableViewDataSource {
@@ -169,8 +174,9 @@ extension ViewController: UITableViewDataSource {
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-		cell.textLabel!.text = tweets[indexPath.row].text
+		let cell = tableView.dequeueReusableCell(withIdentifier: "TweetTableViewCell") as! TweetTableViewCell
+		cell.tweetLabel.text = tweets[indexPath.row].text
+		cell.userLabel.text = tweets[indexPath.row].user.screenName
 		return cell
 	}
 
