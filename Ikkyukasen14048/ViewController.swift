@@ -26,7 +26,7 @@ final class ViewController: UIViewController {
 	var twitterAccount: ACAccount?
 	var tweets: [Tweet] = []
 	var startIndex = 0 // いま見えているセル
-	let SCROLL_AMOUNT = 10
+	let SCROLL_AMOUNT = 5
 	let FETCH_TWEET_COUNT = 200
 
 	enum Direction {
