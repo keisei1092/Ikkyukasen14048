@@ -12,6 +12,10 @@ import Social
 
 class ViewController: UIViewController {
 
+	var accountStore: ACAccountStore = ACAccountStore()
+	var twitterAccount: ACAccount?
+	var tweets: [Tweet] = []
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
