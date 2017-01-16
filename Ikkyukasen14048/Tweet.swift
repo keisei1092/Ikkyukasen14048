@@ -9,21 +9,19 @@
 import Foundation
 
 struct Tweet {
-	struct Tweet {
-		let text: String
-		let createdAt: String
-		let user: User
+	let text: String
+	let createdAt: String
+	let user: User
 
-		var dump: String {
-			get {
-				return "\(text) by @\(user.screenName)"
-			}
+	var dump: String {
+		get {
+			return "\(text) by @\(user.screenName)"
 		}
 	}
+}
 
-	struct User {
-		let name: String
-		let screenName: String
-		let profileImageURLHTTPS: String
-	}
+struct User {
+	let name: String
+	let screenName: String
+	let profileImageURLHTTPS: String
 }

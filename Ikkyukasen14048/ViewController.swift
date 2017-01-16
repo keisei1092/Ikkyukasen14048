@@ -12,6 +12,8 @@ import Social
 
 final class ViewController: UIViewController {
 
+	@IBOutlet weak var tableView: UITableView!
+
 	var accountStore: ACAccountStore = ACAccountStore()
 	var twitterAccount: ACAccount?
 	var tweets: [Tweet] = []
@@ -100,13 +102,34 @@ final class ViewController: UIViewController {
 						let tweetObject = Tweet(text: text, createdAt: createdAt, user: User(name: userName, screenName: userScreenName, profileImageURLHTTPS: userProfileImageURLHTTPS))
 						self.tweets.append(tweetObject)
 					}
-					// ここでなにかする
-					// （例えば self.tableView.reloadData() とか）
+					self.tableView.reloadData()
 				}  catch let error as NSError {
 					print(error)
 				}
 			}
 		}
+	}
+
+}
+
+extension ViewController: UITableViewDelegate {
+
+}
+
+extension ViewController: UITableViewDataSource {
+
+	func numberOfSections(in tableView: UITableView) -> Int {
+		return 1
+	}
+
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return tweets.count
+	}
+
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+		cell.textLabel!.text = tweets[indexPath.row].text
+		return cell
 	}
 
 }
