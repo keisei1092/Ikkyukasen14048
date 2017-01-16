@@ -22,6 +22,8 @@ final class ViewController: UIViewController {
 		scroll(to: .down)
 	}
 
+	var refreshControl:UIRefreshControl!
+
 	var accountStore: ACAccountStore = ACAccountStore()
 	var twitterAccount: ACAccount?
 	var tweets: [Tweet] = []
@@ -35,8 +37,16 @@ final class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
 		// Do any additional setup after loading the view, typically from a nib.
+
 		tableView.register(UINib(nibName: "TweetTableViewCell", bundle: nil), forCellReuseIdentifier: "TweetTableViewCell")
+
+		refreshControl = UIRefreshControl()
+		refreshControl.attributedTitle = NSAttributedString(string: "Pull to reload")
+		refreshControl.addTarget(self, action: #selector(self.getTimeline), for: .valueChanged)
+		tableView.addSubview(refreshControl)
+
 		getAccounts { (accounts: [ACAccount]) -> Void in
 			// do anything
 		}
@@ -80,7 +90,7 @@ final class ViewController: UIViewController {
 		}
 	}
 
-	private func getTimeline() {
+	func getTimeline() {
 		let urlString = "https://api.twitter.com/1.1/statuses/home_timeline.json?count=\(FETCH_TWEET_COUNT)"
 		let url = URL(string: urlString)
 		guard let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .GET, url: url, parameters: nil) else {
@@ -112,6 +122,7 @@ final class ViewController: UIViewController {
 						self.tweets.append(tweetObject)
 					}
 					self.tableView.reloadData()
+					self.refreshControl.endRefreshing()
 				}  catch let error as NSError {
 					print(error)
 				}
