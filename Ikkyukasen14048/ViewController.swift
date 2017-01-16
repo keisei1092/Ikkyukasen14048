@@ -15,17 +15,23 @@ final class ViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 
 	@IBAction func upButtonTouchUpInside(_ sender: UIButton) {
-		handleUp()
+		scroll(to: .up)
 	}
 
 	@IBAction func downButtonTouchUpInside(_ sender: UIButton) {
-		handleDown()
+		scroll(to: .down)
 	}
 
 	var accountStore: ACAccountStore = ACAccountStore()
 	var twitterAccount: ACAccount?
 	var tweets: [Tweet] = []
 	var startIndex = 0 // いま見えているセル
+	let SCROLL_AMOUNT = 10
+	let FETCH_TWEET_COUNT = 200
+
+	enum Direction {
+		case up, down
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -38,6 +44,14 @@ final class ViewController: UIViewController {
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
+	}
+
+	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+		// startIndex = tableView.visibleCells.startIndex
+		guard let visibleRows = tableView.indexPathsForVisibleRows else {
+			return
+		}
+		startIndex = visibleRows[0].row
 	}
 
 	func getAccounts(callback: @escaping ([ACAccount]) -> Void) {
@@ -82,7 +96,8 @@ final class ViewController: UIViewController {
 	}
 
 	private func getTimeline() {
-		let url = URL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json?count=100")
+		let urlString = "https://api.twitter.com/1.1/statuses/home_timeline.json?count=\(FETCH_TWEET_COUNT)"
+		let url = URL(string: urlString)
 		guard let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .GET, url: url, parameters: nil) else {
 			return
 		}
@@ -119,18 +134,23 @@ final class ViewController: UIViewController {
 		}
 	}
 
-	private func handleUp() {
-
-	}
-
-	private func handleDown() {
-		startIndex = startIndex + 10
+	private func scroll(to direction: Direction) {
+		switch direction {
+		case .up:
+			startIndex = isTop() ? startIndex - SCROLL_AMOUNT : startIndex
+		case .down:
+			startIndex = canScrollDown() ? startIndex + SCROLL_AMOUNT : startIndex
+		}
 		let indexPath = IndexPath(row: startIndex, section: 0)
-		tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+		tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
 	}
 
-	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-		startIndex = tableView.visibleCells.startIndex
+	private func isTop() -> Bool {
+		return startIndex != 0
+	}
+
+	private func canScrollDown() -> Bool {
+		return startIndex < tweets.count - SCROLL_AMOUNT
 	}
 
 }
