@@ -25,6 +25,7 @@ final class ViewController: UIViewController {
 	var accountStore: ACAccountStore = ACAccountStore()
 	var twitterAccount: ACAccount?
 	var tweets: [Tweet] = []
+	var startIndex = 0 // いま見えているセル
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -123,7 +124,13 @@ final class ViewController: UIViewController {
 	}
 
 	private func handleDown() {
-		
+		startIndex = startIndex + 10
+		let indexPath = IndexPath(row: startIndex, section: 0)
+		tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+	}
+
+	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+		startIndex = tableView.visibleCells.startIndex
 	}
 
 }
