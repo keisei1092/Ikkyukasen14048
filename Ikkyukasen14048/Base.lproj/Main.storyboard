@@ -34,13 +34,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kzZ-94-Peo">
                                 <rect key="frame" x="301" y="501" width="50" height="150"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3v-fE-1Oh" customClass="BorderedUIButton" customModule="Ikkyukasen14048" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3v-fE-1Oh" customClass="BorderedUIButton" customModule="Ikkyukasen14048" customModuleProvider="target">
                                         <rect key="frame" x="3" y="15.5" width="44" height="44"/>
                                         <color key="backgroundColor" red="0.16078431372549018" green="0.63921568627450975" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="Cpb-2r-G8n"/>
                                             <constraint firstAttribute="width" constant="44" id="rLx-Vg-UEu"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="▲">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -60,6 +61,7 @@
                                             <constraint firstAttribute="height" constant="44" id="gae-h0-637"/>
                                             <constraint firstAttribute="width" constant="44" id="xkK-xz-uT8"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="▼">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
