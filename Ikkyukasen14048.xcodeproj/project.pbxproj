@@ -14,6 +14,7 @@
 		F334819D1E2CE74000DA9513 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F334819B1E2CE74000DA9513 /* LaunchScreen.storyboard */; };
 		F33481A81E2CE74000DA9513 /* Ikkyukasen14048Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33481A71E2CE74000DA9513 /* Ikkyukasen14048Tests.swift */; };
 		F33481B31E2CE74000DA9513 /* Ikkyukasen14048UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33481B21E2CE74000DA9513 /* Ikkyukasen14048UITests.swift */; };
+		F33481C11E2CE7D500DA9513 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33481C01E2CE7D500DA9513 /* Tweet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		F33481AE1E2CE74000DA9513 /* Ikkyukasen14048UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Ikkyukasen14048UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F33481B21E2CE74000DA9513 /* Ikkyukasen14048UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ikkyukasen14048UITests.swift; sourceTree = "<group>"; };
 		F33481B41E2CE74000DA9513 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F33481C01E2CE7D500DA9513 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				F33481991E2CE74000DA9513 /* Assets.xcassets */,
 				F334819B1E2CE74000DA9513 /* LaunchScreen.storyboard */,
 				F334819E1E2CE74000DA9513 /* Info.plist */,
+				F33481C01E2CE7D500DA9513 /* Tweet.swift */,
 			);
 			path = Ikkyukasen14048;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F33481C11E2CE7D500DA9513 /* Tweet.swift in Sources */,
 				F33481951E2CE74000DA9513 /* ViewController.swift in Sources */,
 				F33481931E2CE74000DA9513 /* AppDelegate.swift in Sources */,
 			);
