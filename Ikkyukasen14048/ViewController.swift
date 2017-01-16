@@ -120,7 +120,9 @@ final class ViewController: UIViewController {
 						}
 
 						let tweetObject = Tweet(text: text, createdAt: createdAt, user: User(name: userName, screenName: userScreenName, profileImageURLHTTPS: userProfileImageURLHTTPS))
-						self.tweets.append(tweetObject)
+						if !self.isRetweet(text: tweetObject.text) {
+							self.tweets.append(tweetObject)
+						}
 					}
 					self.tableView.reloadData()
 					self.refreshControl.endRefreshing()
@@ -148,6 +150,10 @@ final class ViewController: UIViewController {
 
 	private func canScrollDown() -> Bool {
 		return startIndex < tweets.count - SCROLL_AMOUNT
+	}
+
+	private func isRetweet(text: String) -> Bool {
+		return text.contains("RT ")
 	}
 
 }
