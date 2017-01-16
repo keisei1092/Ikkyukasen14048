@@ -32,7 +32,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kzZ-94-Peo">
-                                <rect key="frame" x="301" y="501" width="50" height="150"/>
+                                <rect key="frame" x="301" y="485" width="50" height="150"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3v-fE-1Oh" customClass="BorderedUIButton" customModule="Ikkyukasen14048" customModuleProvider="target">
                                         <rect key="frame" x="3" y="15.5" width="44" height="44"/>
@@ -90,7 +90,7 @@
                             <constraint firstItem="IRQ-uT-kMq" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="6dq-Ix-e1d"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kzZ-94-Peo" secondAttribute="trailing" constant="8" id="JWH-mW-0Q6"/>
                             <constraint firstItem="IRQ-uT-kMq" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="MOB-Xa-CyW"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kzZ-94-Peo" secondAttribute="bottom" constant="16" id="YMx-hb-ME7"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kzZ-94-Peo" secondAttribute="bottom" constant="32" id="YMx-hb-ME7"/>
                             <constraint firstItem="IRQ-uT-kMq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wDB-Gv-0US"/>
                             <constraint firstItem="IRQ-uT-kMq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="yhB-qj-VV6"/>
                         </constraints>
