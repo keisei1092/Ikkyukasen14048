@@ -32,17 +32,21 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kzZ-94-Peo">
-                                <rect key="frame" x="309" y="559" width="50" height="100"/>
+                                <rect key="frame" x="309" y="509" width="50" height="150"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3v-fE-1Oh" customClass="BorderedUIButton" customModule="Ikkyukasen14048" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                        <rect key="frame" x="3" y="15.5" width="44" height="44"/>
                                         <color key="backgroundColor" red="0.16078431372549018" green="0.63921568627450975" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="Cpb-2r-G8n"/>
+                                            <constraint firstAttribute="width" constant="44" id="rLx-Vg-UEu"/>
+                                        </constraints>
                                         <state key="normal" title="▲">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="15"/>
+                                                <real key="value" value="22"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -50,14 +54,18 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLJ-hy-dSR" customClass="BorderedUIButton" customModule="Ikkyukasen14048" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="60" width="30" height="30"/>
+                                        <rect key="frame" x="3" y="90.5" width="44" height="44"/>
                                         <color key="backgroundColor" red="0.16078431369999999" green="0.63921568630000003" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="gae-h0-637"/>
+                                            <constraint firstAttribute="width" constant="44" id="xkK-xz-uT8"/>
+                                        </constraints>
                                         <state key="normal" title="▼">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="15"/>
+                                                <real key="value" value="22"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -68,7 +76,7 @@
                                 <constraints>
                                     <constraint firstItem="zLJ-hy-dSR" firstAttribute="centerX" secondItem="kzZ-94-Peo" secondAttribute="centerX" id="3eG-fE-jd5"/>
                                     <constraint firstItem="E3v-fE-1Oh" firstAttribute="centerX" secondItem="kzZ-94-Peo" secondAttribute="centerX" id="598-ib-YfL"/>
-                                    <constraint firstAttribute="height" constant="100" id="92c-N9-Orv"/>
+                                    <constraint firstAttribute="height" constant="150" id="92c-N9-Orv"/>
                                     <constraint firstItem="E3v-fE-1Oh" firstAttribute="centerY" secondItem="kzZ-94-Peo" secondAttribute="centerY" multiplier="0.5" id="PvP-B4-N2J"/>
                                     <constraint firstItem="zLJ-hy-dSR" firstAttribute="centerY" secondItem="kzZ-94-Peo" secondAttribute="centerY" multiplier="1.5" id="cVU-wi-jvY"/>
                                     <constraint firstAttribute="width" constant="50" id="oot-jM-MwS"/>
