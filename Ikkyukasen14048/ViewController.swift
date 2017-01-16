@@ -136,7 +136,7 @@ final class ViewController: UIViewController {
 	private func scroll(to direction: Direction) {
 		switch direction {
 		case .up:
-			startIndex = isTop() ? startIndex - SCROLL_AMOUNT : startIndex
+			startIndex = canScrollUp() ? startIndex - SCROLL_AMOUNT : startIndex
 		case .down:
 			startIndex = canScrollDown() ? startIndex + SCROLL_AMOUNT : startIndex
 		}
@@ -144,8 +144,8 @@ final class ViewController: UIViewController {
 		tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
 	}
 
-	private func isTop() -> Bool {
-		return startIndex != 0
+	private func canScrollUp() -> Bool {
+		return startIndex - SCROLL_AMOUNT > 0
 	}
 
 	private func canScrollDown() -> Bool {
