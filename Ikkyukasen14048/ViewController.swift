@@ -10,7 +10,7 @@ import UIKit
 import Accounts
 import Social
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
 	var accountStore: ACAccountStore = ACAccountStore()
 	var twitterAccount: ACAccount?
