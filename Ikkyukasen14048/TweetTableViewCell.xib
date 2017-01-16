@@ -45,6 +45,10 @@
                     <constraint firstAttribute="topMargin" secondItem="ZaZ-44-vwt" secondAttribute="top" id="rA9-2m-Wd2"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="textLabel" destination="ZaZ-44-vwt" id="dT3-gL-mDJ"/>
+                <outlet property="userLabel" destination="Sb1-kt-MOc" id="UOm-As-PQ0"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>
