@@ -35,7 +35,7 @@
                                 <rect key="frame" x="301" y="485" width="50" height="150"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3v-fE-1Oh" customClass="BorderedUIButton" customModule="Ikkyukasen14048" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="12.5" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="13" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.16078431372549018" green="0.63921568627450975" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Cpb-2r-G8n"/>
@@ -55,7 +55,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLJ-hy-dSR" customClass="BorderedUIButton" customModule="Ikkyukasen14048" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="87.5" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="88" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.16078431369999999" green="0.63921568630000003" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="gae-h0-637"/>

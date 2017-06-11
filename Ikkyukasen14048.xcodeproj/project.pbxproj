@@ -12,6 +12,7 @@
 		45CC8D961EED11FF000E80F0 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CC8D951EED11FF000E80F0 /* AccountManager.swift */; };
 		45CC8D9C1EED144E000E80F0 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45CC8D981EED144E000E80F0 /* RxCocoa.framework */; };
 		45CC8D9D1EED144E000E80F0 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45CC8D991EED144E000E80F0 /* RxSwift.framework */; };
+		45CC8DA21EED1ECB000E80F0 /* TwitterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CC8DA11EED1ECB000E80F0 /* TwitterRepository.swift */; };
 		45D3318F1EEA3337000FD8C4 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D3318E1EEA3337000FD8C4 /* Kingfisher.framework */; };
 		F33481931E2CE74000DA9513 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33481921E2CE74000DA9513 /* AppDelegate.swift */; };
 		F33481951E2CE74000DA9513 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33481941E2CE74000DA9513 /* ViewController.swift */; };
@@ -51,6 +52,7 @@
 		45CC8D981EED144E000E80F0 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		45CC8D991EED144E000E80F0 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		45CC8D9A1EED144E000E80F0 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
+		45CC8DA11EED1ECB000E80F0 /* TwitterRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterRepository.swift; sourceTree = "<group>"; };
 		45D3318E1EEA3337000FD8C4 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		F334818F1E2CE74000DA9513 /* Ikkyukasen14048.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ikkyukasen14048.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F33481921E2CE74000DA9513 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				45CC8D911EED0FB0000E80F0 /* UITableView+register.swift */,
 				45CC8D931EED0FDC000E80F0 /* NSObject+className.swift */,
 				45CC8D951EED11FF000E80F0 /* AccountManager.swift */,
+				45CC8DA11EED1ECB000E80F0 /* TwitterRepository.swift */,
 			);
 			path = Ikkyukasen14048;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				F33481C61E2CFDE100DA9513 /* TweetTableViewCell.swift in Sources */,
 				F33481931E2CE74000DA9513 /* AppDelegate.swift in Sources */,
 				45CC8D941EED0FDC000E80F0 /* NSObject+className.swift in Sources */,
+				45CC8DA21EED1ECB000E80F0 /* TwitterRepository.swift in Sources */,
 				45CC8D961EED11FF000E80F0 /* AccountManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

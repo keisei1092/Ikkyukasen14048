@@ -7,10 +7,9 @@
 //
 
 import UIKit
-import Social
-import Kingfisher
+import RxSwift
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TweetTableViewCellDelegate {
 	@IBOutlet weak var tableView: UITableView!
 
 	@IBAction func upButtonTouchUpInside(_ sender: UIButton) {
@@ -26,7 +25,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 	var tweets: [Tweet] = []
 	var startIndex = 0 // いま見えているセル
 	let SCROLL_AMOUNT = 5
-	let FETCH_TWEET_COUNT = 200
+	private let repository = TwitterRepository()
+	private let disposeBag = DisposeBag()
+	private let backgroundScheduler = SerialDispatchQueueScheduler(qos: .default)
 
 	enum Direction {
 		case up, down
@@ -56,49 +57,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 	}
 
 	func getTimeline() {
-		let urlString = "https://api.twitter.com/1.1/statuses/home_timeline.json?count=\(FETCH_TWEET_COUNT)"
-		let url = URL(string: urlString)
-		guard let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .GET, url: url, parameters: nil) else {
-			return
-		}
-		request.account = AccountManager.shared.twitterAccount
-		request.perform { [weak self] responseData, response, error in
-			DispatchQueue.main.async {
-    			if error != nil {
-    				print(error ?? "error in performing request :[")
-    			} else {
-    				do {
-    					guard let responseData = responseData else {
-    						return
-    					}
-    					let result = try JSONSerialization.jsonObject(with: responseData, options: .allowFragments)
-    					self?.tweets = []
-    					for tweet in result as! [AnyObject] { // errorsが返ってくることがある
-    						guard let text = tweet["text"] as? String, let createdAt = tweet["created_at"] as? String else { // これmodel側でやるべきな感じ
-    							print("failed to map tweet string from JSON")
-    							return
-    						}
-
-    						let user = tweet["user"] as? [String: Any]
-    						guard let userName = user?["name"] as? String, let userScreenName = user?["screen_name"] as? String, let userProfileImageURLHTTPS = user?["profile_image_url_https"] as? String else {
-    							print("failed to map user string from JSON")
-    							return
-    						}
-
-    						let tweetObject = Tweet(text: text, createdAt: createdAt, user: User(name: userName, screenName: userScreenName, profileImageURLHTTPS: userProfileImageURLHTTPS))
-    						guard let strongSelf = self else { return }
-    						if !strongSelf.isRetweet(text: tweetObject.text) {
-    							self?.tweets.append(tweetObject)
-    						}
-    					}
-    					self?.tableView.reloadData()
-    					self?.refreshControl.endRefreshing()
-    				}  catch let error as NSError {
-    					print(error)
-    				}
-    			}
-			}
-		}
+		repository
+			.getTimeline()
+			.subscribeOn(backgroundScheduler)
+			.observeOn(MainScheduler.instance)
+			.subscribe(onNext: { [weak self] tweets in
+				self?.tweets = tweets
+				self?.tableView.reloadData()
+				self?.refreshControl.endRefreshing()
+    		})
+			.disposed(by: disposeBag)
 	}
 
 	private func scroll(to direction: Direction) {
@@ -120,17 +88,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 		return startIndex < tweets.count - SCROLL_AMOUNT
 	}
 
-	private func isRetweet(text: String) -> Bool {
-		return text.contains("RT ")
-	}
+	// MARK: - UITableViewDelegate
 
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return UITableViewAutomaticDimension
 	}
 
-	func numberOfSections(in tableView: UITableView) -> Int {
-		return 1
-	}
+	// MARK: - UITableViewDelegate
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return tweets.count
@@ -138,7 +102,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(with: TweetTableViewCell.self, for: indexPath)
+		cell.delegate = self
 		cell.display(tweet: tweets[indexPath.row])
 		return cell
+	}
+
+	// MARK: - TweetTableViewCellDelegate
+
+	func tweetTableViewCellDelegate(_ tweetTableViewCell: TweetTableViewCell, didTapFavButton favButton: UIButton, tweet: Tweet) {
+		print("faved!")
 	}
 }
