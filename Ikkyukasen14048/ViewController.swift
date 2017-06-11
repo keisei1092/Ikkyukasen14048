@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import Accounts
 import Social
+import Kingfisher
 
-final class ViewController: UIViewController {
-
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	@IBOutlet weak var tableView: UITableView!
 
 	@IBAction func upButtonTouchUpInside(_ sender: UIButton) {
@@ -22,10 +21,8 @@ final class ViewController: UIViewController {
 		scroll(to: .down)
 	}
 
-	var refreshControl:UIRefreshControl!
+	var refreshControl: UIRefreshControl!
 
-	var accountStore: ACAccountStore = ACAccountStore()
-	var twitterAccount: ACAccount?
 	var tweets: [Tweet] = []
 	var startIndex = 0 // いま見えているセル
 	let SCROLL_AMOUNT = 5
@@ -38,56 +35,24 @@ final class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		// Do any additional setup after loading the view, typically from a nib.
-
-		tableView.register(UINib(nibName: "TweetTableViewCell", bundle: nil), forCellReuseIdentifier: "TweetTableViewCell")
+		tableView.estimatedRowHeight = 44
+		tableView.register(cellType: TweetTableViewCell.self)
 
 		refreshControl = UIRefreshControl()
 		refreshControl.attributedTitle = NSAttributedString(string: "Pull to reload")
-		refreshControl.addTarget(self, action: #selector(self.getTimeline), for: .valueChanged)
+		refreshControl.addTarget(self, action: #selector(getTimeline), for: .valueChanged)
 		tableView.addSubview(refreshControl)
 
-		getAccounts { (accounts: [ACAccount]) -> Void in
-			// do anything
-		}
-	}
-
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
+		getTimeline()
 	}
 
 	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-		guard tweets.count != 0 else {
-			return
-		}
-		guard let visibleRows = tableView.indexPathsForVisibleRows else {
-			return
-		}
+		guard
+    		tweets.count != 0,
+    		let visibleRows = tableView.indexPathsForVisibleRows
+		else { return }
+
 		startIndex = visibleRows[0].row
-	}
-
-	func getAccounts(callback: @escaping ([ACAccount]) -> Void) {
-		let accountType: ACAccountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-		accountStore.requestAccessToAccounts(with: accountType, options: nil) { (granted: Bool, error: Error?) -> Void in
-			guard error == nil else {
-				print("error! \(error)")
-				return
-			}
-			guard granted else {
-				print("error! Twitterアカウントの利用が許可されていません")
-				return
-			}
-
-			let accounts = self.accountStore.accounts(with: accountType) as! [ACAccount]
-			guard accounts.count != 0 else {
-				print("error! 設定画面からアカウントを設定してください")
-				return
-			}
-			print("アカウント取得完了")
-			self.twitterAccount = accounts[0]
-			self.getTimeline()
-		}
 	}
 
 	func getTimeline() {
@@ -96,39 +61,42 @@ final class ViewController: UIViewController {
 		guard let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .GET, url: url, parameters: nil) else {
 			return
 		}
-		request.account = twitterAccount
-		request.perform { (responseData, response, error) -> Void in
-			if error != nil {
-				print(error ?? "error in performing request :[")
-			} else {
-				do {
-					guard let responseData = responseData else {
-						return
-					}
-					let result = try JSONSerialization.jsonObject(with: responseData, options: .allowFragments)
-					self.tweets = []
-					for tweet in result as! [AnyObject] { // errorsが返ってくることがある
-						guard let text = tweet["text"] as? String, let createdAt = tweet["created_at"] as? String else { // これmodel側でやるべきな感じ
-							print("failed to map tweet string from JSON")
-							return
-						}
+		request.account = AccountManager.shared.twitterAccount
+		request.perform { [weak self] responseData, response, error in
+			DispatchQueue.main.async {
+    			if error != nil {
+    				print(error ?? "error in performing request :[")
+    			} else {
+    				do {
+    					guard let responseData = responseData else {
+    						return
+    					}
+    					let result = try JSONSerialization.jsonObject(with: responseData, options: .allowFragments)
+    					self?.tweets = []
+    					for tweet in result as! [AnyObject] { // errorsが返ってくることがある
+    						guard let text = tweet["text"] as? String, let createdAt = tweet["created_at"] as? String else { // これmodel側でやるべきな感じ
+    							print("failed to map tweet string from JSON")
+    							return
+    						}
 
-						let user = tweet["user"] as? [String: Any]
-						guard let userName = user?["name"] as? String, let userScreenName = user?["screen_name"] as? String, let userProfileImageURLHTTPS = user?["profile_image_url_https"] as? String else {
-							print("failed to map user string from JSON")
-							return
-						}
+    						let user = tweet["user"] as? [String: Any]
+    						guard let userName = user?["name"] as? String, let userScreenName = user?["screen_name"] as? String, let userProfileImageURLHTTPS = user?["profile_image_url_https"] as? String else {
+    							print("failed to map user string from JSON")
+    							return
+    						}
 
-						let tweetObject = Tweet(text: text, createdAt: createdAt, user: User(name: userName, screenName: userScreenName, profileImageURLHTTPS: userProfileImageURLHTTPS))
-						if !self.isRetweet(text: tweetObject.text) {
-							self.tweets.append(tweetObject)
-						}
-					}
-					self.tableView.reloadData()
-					self.refreshControl.endRefreshing()
-				}  catch let error as NSError {
-					print(error)
-				}
+    						let tweetObject = Tweet(text: text, createdAt: createdAt, user: User(name: userName, screenName: userScreenName, profileImageURLHTTPS: userProfileImageURLHTTPS))
+    						guard let strongSelf = self else { return }
+    						if !strongSelf.isRetweet(text: tweetObject.text) {
+    							self?.tweets.append(tweetObject)
+    						}
+    					}
+    					self?.tableView.reloadData()
+    					self?.refreshControl.endRefreshing()
+    				}  catch let error as NSError {
+    					print(error)
+    				}
+    			}
 			}
 		}
 	}
@@ -156,17 +124,9 @@ final class ViewController: UIViewController {
 		return text.contains("RT ")
 	}
 
-}
-
-extension ViewController: UITableViewDelegate {
-
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 132
+		return UITableViewAutomaticDimension
 	}
-
-}
-
-extension ViewController: UITableViewDataSource {
 
 	func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
@@ -177,11 +137,8 @@ extension ViewController: UITableViewDataSource {
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "TweetTableViewCell") as! TweetTableViewCell
-		cell.tweetLabel.text = tweets[indexPath.row].text
-		cell.userLabel.text = tweets[indexPath.row].user.screenName
+		let cell = tableView.dequeueReusableCell(with: TweetTableViewCell.self, for: indexPath)
+		cell.display(tweet: tweets[indexPath.row])
 		return cell
 	}
-
 }
-

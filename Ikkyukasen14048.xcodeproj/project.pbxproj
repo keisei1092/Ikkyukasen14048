@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45CC8D921EED0FB0000E80F0 /* UITableView+register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CC8D911EED0FB0000E80F0 /* UITableView+register.swift */; };
+		45CC8D941EED0FDC000E80F0 /* NSObject+className.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CC8D931EED0FDC000E80F0 /* NSObject+className.swift */; };
+		45CC8D961EED11FF000E80F0 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CC8D951EED11FF000E80F0 /* AccountManager.swift */; };
+		45CC8D9C1EED144E000E80F0 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45CC8D981EED144E000E80F0 /* RxCocoa.framework */; };
+		45CC8D9D1EED144E000E80F0 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45CC8D991EED144E000E80F0 /* RxSwift.framework */; };
+		45D3318F1EEA3337000FD8C4 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D3318E1EEA3337000FD8C4 /* Kingfisher.framework */; };
 		F33481931E2CE74000DA9513 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33481921E2CE74000DA9513 /* AppDelegate.swift */; };
 		F33481951E2CE74000DA9513 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33481941E2CE74000DA9513 /* ViewController.swift */; };
 		F33481981E2CE74000DA9513 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F33481961E2CE74000DA9513 /* Main.storyboard */; };
@@ -38,6 +44,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		45CC8D911EED0FB0000E80F0 /* UITableView+register.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+register.swift"; sourceTree = "<group>"; };
+		45CC8D931EED0FDC000E80F0 /* NSObject+className.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+className.swift"; sourceTree = "<group>"; };
+		45CC8D951EED11FF000E80F0 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		45CC8D971EED144E000E80F0 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
+		45CC8D981EED144E000E80F0 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		45CC8D991EED144E000E80F0 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		45CC8D9A1EED144E000E80F0 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
+		45D3318E1EEA3337000FD8C4 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		F334818F1E2CE74000DA9513 /* Ikkyukasen14048.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ikkyukasen14048.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F33481921E2CE74000DA9513 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F33481941E2CE74000DA9513 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +76,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45D3318F1EEA3337000FD8C4 /* Kingfisher.framework in Frameworks */,
+				45CC8D9C1EED144E000E80F0 /* RxCocoa.framework in Frameworks */,
+				45CC8D9D1EED144E000E80F0 /* RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +99,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45D3318D1EEA3337000FD8C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				45CC8D971EED144E000E80F0 /* RxBlocking.framework */,
+				45CC8D981EED144E000E80F0 /* RxCocoa.framework */,
+				45CC8D991EED144E000E80F0 /* RxSwift.framework */,
+				45CC8D9A1EED144E000E80F0 /* RxTest.framework */,
+				45D3318E1EEA3337000FD8C4 /* Kingfisher.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F33481861E2CE74000DA9513 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +118,7 @@
 				F33481A61E2CE74000DA9513 /* Ikkyukasen14048Tests */,
 				F33481B11E2CE74000DA9513 /* Ikkyukasen14048UITests */,
 				F33481901E2CE74000DA9513 /* Products */,
+				45D3318D1EEA3337000FD8C4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +145,9 @@
 				F33481C21E2CEAC300DA9513 /* BorderedUIButton.swift */,
 				F33481C41E2CFDE100DA9513 /* TweetTableViewCell.swift */,
 				F33481C51E2CFDE100DA9513 /* TweetTableViewCell.xib */,
+				45CC8D911EED0FB0000E80F0 /* UITableView+register.swift */,
+				45CC8D931EED0FDC000E80F0 /* NSObject+className.swift */,
+				45CC8D951EED11FF000E80F0 /* AccountManager.swift */,
 			);
 			path = Ikkyukasen14048;
 			sourceTree = "<group>";
@@ -147,6 +180,7 @@
 				F334818B1E2CE74000DA9513 /* Sources */,
 				F334818C1E2CE74000DA9513 /* Frameworks */,
 				F334818D1E2CE74000DA9513 /* Resources */,
+				45D331901EEA333E000FD8C4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -270,6 +304,25 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		45D331901EEA333E000FD8C4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F334818B1E2CE74000DA9513 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -277,9 +330,12 @@
 			files = (
 				F33481C11E2CE7D500DA9513 /* Tweet.swift in Sources */,
 				F33481951E2CE74000DA9513 /* ViewController.swift in Sources */,
+				45CC8D921EED0FB0000E80F0 /* UITableView+register.swift in Sources */,
 				F33481C31E2CEAC300DA9513 /* BorderedUIButton.swift in Sources */,
 				F33481C61E2CFDE100DA9513 /* TweetTableViewCell.swift in Sources */,
 				F33481931E2CE74000DA9513 /* AppDelegate.swift in Sources */,
+				45CC8D941EED0FDC000E80F0 /* NSObject+className.swift in Sources */,
+				45CC8D961EED11FF000E80F0 /* AccountManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +488,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZLP777QDS4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Ikkyukasen14048/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.miraitoarumachi.Ikkyukasen14048;
@@ -445,6 +505,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZLP777QDS4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Ikkyukasen14048/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.miraitoarumachi.Ikkyukasen14048;
@@ -530,6 +594,7 @@
 				F33481B91E2CE74000DA9513 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F33481BA1E2CE74000DA9513 /* Build configuration list for PBXNativeTarget "Ikkyukasen14048Tests" */ = {
 			isa = XCConfigurationList;
@@ -538,6 +603,7 @@
 				F33481BC1E2CE74000DA9513 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F33481BD1E2CE74000DA9513 /* Build configuration list for PBXNativeTarget "Ikkyukasen14048UITests" */ = {
 			isa = XCConfigurationList;
@@ -546,6 +612,7 @@
 				F33481BF1E2CE74000DA9513 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

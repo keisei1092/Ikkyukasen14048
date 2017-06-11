@@ -8,20 +8,15 @@
 
 import UIKit
 
-final class TweetTableViewCell: UITableViewCell {
-
+class TweetTableViewCell: UITableViewCell {
 	@IBOutlet weak var tweetLabel: UILabel!
 	@IBOutlet weak var userLabel: UILabel!
+	@IBOutlet weak var profileImageView: UIImageView!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
+	func display(tweet: Tweet) {
+		tweetLabel.text = tweet.text
+		userLabel.text = tweet.user.screenName
+		let url = URL(string: tweet.user.profileImageURLHTTPS)!
+		profileImageView.kf.setImage(with: url)
+	}
 }
